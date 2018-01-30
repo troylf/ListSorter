@@ -1,32 +1,41 @@
 import React, { Component } from 'react';
-import BoundTextArea from './BoundTextArea.js';
+import ListInput from './ListInput.js';
 import './App.css';
 
 class App extends Component {
+  actionState = {
+    listInput: 1,
+    sort: 2
+  }
+
   constructor(props){
     super(props);
-    this.state = {userList: '', testArea:''};
 
-    this.listChange = this.listChange.bind(this);
+    this.state = {userList: [], appState: this.actionState.listInput};
+
+    this.submitListInput = this.submitListInput.bind(this);
+    this.activateListInput = this.activateListInput.bind(this);
   }
 
-  sanatizeArray(arr){
-    return arr.split('\n').map((item)=>item.trim()).filter((item)=>item!=='');
+  submitListInput(list){
+    this.setState({userList: list, appState: this.actionState.sort});
   }
 
-  listChange(event){
-    const filteredList = this.sanatizeArray(event.target.value);
-    this.setState({userList: event.target.value, testArea: filteredList});
+  activateListInput(event){
+    this.setState({appState: this.actionState.listInput});
   }
 
   render() {
     return (
-      <div class='mainTextArea'>
-        <BoundTextArea value={this.state.value} onChange={this.listChange}/>
-        <div>
-        {JSON.stringify(this.state.testArea)}
-        </div>
-      </div>
+      <div>
+        { this.state.appState === this.actionState.listInput &&
+          <ListInput onFinish={this.submitListInput}/>
+        }
+        { this.state.appState === this.actionState.sort &&
+          <div>{JSON.stringify(this.state.userList)}
+          <button onClick={this.activateListInput}> back </button></div>
+        }
+      </div>  
     );
   }
 }
