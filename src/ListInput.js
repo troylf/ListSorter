@@ -10,8 +10,10 @@ class ListInput extends Component {
     this.onFinishButtonClick = this.onFinishButtonClick.bind(this);
   }
 
-  sanatizeArray(arr){
-    return arr.split('\n').map((item)=>item.trim()).filter((item)=>item!=='');
+  cleanArray(arr){
+    return arr.split('\n')
+    					.map((item)=>item.trim())
+    					.filter((item)=>item!=='');
   }
 
   listChange(event){
@@ -19,7 +21,7 @@ class ListInput extends Component {
   }
 
   onFinishButtonClick(event){
-  	this.props.onFinish(this.sanatizeArray(this.state.value));
+  	this.props.onFinish(this.cleanArray(this.state.value));
   }
 
 	render(){

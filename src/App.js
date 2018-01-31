@@ -7,22 +7,35 @@ class App extends Component {
   actionState = {
     listInput: 1,
     sort: 2
-  }
+  };
+
+  appLocalStorageKey = 'ListSorter';
 
   constructor(props){
     super(props);
 
-    this.state = {userList: [], appState: this.actionState.listInput};
+    let initList = [];
+    if(typeof(Storage) !== "undefined"){
+      initList = JSON.parse(localStorage.getItem(this.appLocalStorageKey)) || [];
+    }
+    this.state = {userList: initList, appState: this.actionState.listInput};
 
     this.submitListInput = this.submitListInput.bind(this);
     this.submitSortedList = this.submitSortedList.bind(this);
+    this.saveToLocalStorage = this.saveToLocalStorage.bind(this);
+  }
+
+  saveToLocalStorage(list){
+    localStorage.setItem(this.appLocalStorageKey, JSON.stringify(list));
   }
 
   submitListInput(list){
+    this.saveToLocalStorage(list);
     this.setState({userList: list, appState: this.actionState.sort});
   }
 
   submitSortedList(list){
+    this.saveToLocalStorage(list);
     this.setState({userList: list, appState: this.actionState.listInput});
   }
 
