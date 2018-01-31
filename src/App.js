@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ListInput from './ListInput.js';
+import ListSorter from './ListSorter.js';
 import './App.css';
 
 class App extends Component {
@@ -14,26 +15,25 @@ class App extends Component {
     this.state = {userList: [], appState: this.actionState.listInput};
 
     this.submitListInput = this.submitListInput.bind(this);
-    this.activateListInput = this.activateListInput.bind(this);
+    this.submitSortedList = this.submitSortedList.bind(this);
   }
 
   submitListInput(list){
     this.setState({userList: list, appState: this.actionState.sort});
   }
 
-  activateListInput(event){
-    this.setState({appState: this.actionState.listInput});
+  submitSortedList(list){
+    this.setState({userList: list, appState: this.actionState.listInput});
   }
 
   render() {
     return (
       <div>
         { this.state.appState === this.actionState.listInput &&
-          <ListInput onFinish={this.submitListInput}/>
+          <ListInput onFinish={this.submitListInput} initialList={this.state.userList}/>
         }
         { this.state.appState === this.actionState.sort &&
-          <div>{JSON.stringify(this.state.userList)}
-          <button onClick={this.activateListInput}> back </button></div>
+          <ListSorter onFinish={this.submitSortedList} initialList={this.state.userList}/>
         }
       </div>  
     );

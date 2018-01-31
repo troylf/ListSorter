@@ -4,7 +4,7 @@ import BoundTextArea from './BoundTextArea.js';
 class ListInput extends Component {
 	constructor(props){
     super(props);
-    this.state = {value: ''};
+    this.state = {value: props.initialList.join("\n")};
 
     this.listChange = this.listChange.bind(this);
     this.onFinishButtonClick = this.onFinishButtonClick.bind(this);
