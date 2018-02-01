@@ -1,6 +1,6 @@
 ## Features to be implemented
 
--[ ] save to local storage
+-[x] save to local storage
 -[ ] percentage of sorting done output
 -[ ] add SASS/SCSS for css compilation
 -[ ] add help
@@ -22,3 +22,8 @@
 -[ ] External survey version
 -[ ] delete all function
 -[ ] login features
+
+## Additional features that need to be sorted 
+
+* draft saving of the lists
+* a 'back' button for the sorting algorithm (one step only)
