@@ -1,12 +1,11 @@
 ## Features to be implemented
 
 -[x] save to local storage
--[ ] percentage of sorting done output
--[ ] add SASS/SCSS for css compilation
+-[x] percentage of sorting done output
+-[ ] multiple lists
 -[ ] add help
 -[ ] Upgrade the Ux design (experience)
 -[ ] Upgrade the UI design (look)
--[ ] multiple lists
 -[ ] list input with line numbers
 -[ ] come up with a more clear implementation of the sorting algorithm
 -[ ] add a getting started guide
@@ -27,3 +26,4 @@
 
 * draft saving of the lists
 * a 'back' button for the sorting algorithm (one step only)
+* add SASS/SCSS for css compilation
