@@ -5,7 +5,8 @@ class ListSorter extends Component{
 		super(props);
 		this.state = {
 			optionA:"",
-			optionB:""
+			optionB:"",
+			percentDone: 0
 		};
 
 		this.asyncMergesort_resetInnerForloop = this.asyncMergesort_resetInnerForloop.bind(this);
@@ -14,9 +15,11 @@ class ListSorter extends Component{
 		this.clickOptionA = this.clickOptionA.bind(this);
 		this.clickOptionB = this.clickOptionB.bind(this);
 		this.setOptions = this.setOptions.bind(this);
+		this.percentageDone = this.percentageDone.bind(this);
 
+		const listLength = props.initialList.length;
 		this.msv = {
-			num: props.initialList.length,
+			num: listLength,
 			a: this.shuffle(props.initialList),
 			b: [],
 			k: 1,
@@ -24,12 +27,37 @@ class ListSorter extends Component{
 			compareFunction: this.setOptions,
 			finishCallback: props.onFinish
 		};
+		this.clicksAtKLevel = 0;
+		this.previousK = 0;
 	}
 
 	componentDidMount(){
 		this.asyncMergesort_resetInnerForloop();
 		this.asyncMergesort_itterate();
 	}
+
+//Percentage Functions
+	powerOf2UnderTotal(total){
+		let i = 0;
+		while(Math.pow(2,i) < total){
+			i++;
+		}
+		return i;
+	}
+
+	percentageDone(k, length, clicksAtKLevel){
+		const groupSize = (k*2 >= length)
+											? length :
+											k*2;
+		const numberOfGroups = Math.floor( length/(k*2) );
+		const estimatedClicksAtKLevel = (numberOfGroups === 0) 
+																		? length-1:
+																		(groupSize-1)*numberOfGroups;
+		const maxKPower = this.powerOf2UnderTotal(length);
+
+		return (Math.log(k)/Math.log(2)+clicksAtKLevel/estimatedClicksAtKLevel)/maxKPower;
+	}
+
 
 	// Fisher–Yates shuffle
 	shuffle(array) {
@@ -107,9 +135,18 @@ class ListSorter extends Component{
 	}
 
 	setOptions(a, b){
+		if ( this.previousK !== this.msv.k ){
+			this.previousK = this.msv.k;
+			this.clicksAtKLevel = 0;
+		} else {
+			this.clicksAtKLevel = this.clicksAtKLevel+1;			
+		}
+		const newPercent = this.percentageDone(this.msv.k, this.msv.num, this.clicksAtKLevel);
+
 		this.setState({
 			optionA: a,
-			optionB: b
+			optionB: b,
+			percentDone: Math.floor(newPercent*100)
 		});
 	}
 
@@ -118,6 +155,10 @@ class ListSorter extends Component{
 			<div>
 				<button onClick={this.clickOptionA}>{this.state.optionA}</button>
 				<button onClick={this.clickOptionB}>{this.state.optionB}</button>
+				<div>
+					{this.state.percentDone}%
+				</div>
+					
 			</div>
 		);
 	}
