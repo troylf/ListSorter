@@ -2,10 +2,10 @@
 
 -[x] save to local storage
 -[x] percentage of sorting done output
--[ ] multiple lists
--[ ] add help
+-[x] add help
 -[ ] Upgrade the Ux design (experience)
 -[ ] Upgrade the UI design (look)
+-[ ] multiple lists
 -[ ] list input with line numbers
 -[ ] come up with a more clear implementation of the sorting algorithm
 -[ ] add a getting started guide
@@ -27,3 +27,5 @@
 * draft saving of the lists
 * a 'back' button for the sorting algorithm (one step only)
 * add SASS/SCSS for css compilation
+
+http://paletton.com/#uid=51M0F0kiCFn8GVde7NVmtwSqXtg

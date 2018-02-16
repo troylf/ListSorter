@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './ListSorter.css'
 
 class ListSorter extends Component{
 	constructor(props){
@@ -152,11 +153,15 @@ class ListSorter extends Component{
 
 	render(){
 		return(
-			<div>
-				<button onClick={this.clickOptionA}>{this.state.optionA}</button>
-				<button onClick={this.clickOptionB}>{this.state.optionB}</button>
-				<div>
-					{this.state.percentDone}%
+			<div className="ListSorter">
+				<div className="progress">
+				  <div className="progress-bar bg-success" role="progressbar" style={{width: this.state.percentDone+"%"}} aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+				</div>
+				<h4> If you could only have one of these, which would it be?</h4>
+				<div className="ListSorter-buttonContainer">
+					<button onClick={this.clickOptionA}>{this.state.optionA}</button>
+					<div className="ListSorter-or"> or </div>
+					<button onClick={this.clickOptionB}>{this.state.optionB}</button>
 				</div>
 					
 			</div>

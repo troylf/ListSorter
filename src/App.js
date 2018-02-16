@@ -41,7 +41,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className='approot'>
         { this.state.appState === this.actionState.listInput &&
           <ListInput onFinish={this.submitListInput} initialList={this.state.userList}/>
         }

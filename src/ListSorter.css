@@ -1,0 +1,22 @@
+.ListSorter h4{
+margin-top:10px;
+
+}
+
+.ListSorter-buttonContainer{
+	margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ListSorter-buttonContainer button{
+	margin:auto;
+}
+
+.ListSorter-or{
+	text-align: center;
+    font-weight: bold;
+    font-size: larger;
+    margin: 5px;
+}

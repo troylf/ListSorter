@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import BoundTextArea from './BoundTextArea.js';
+import './ListInput.css';
 
 class ListInput extends Component {
 	constructor(props){
@@ -27,9 +28,10 @@ class ListInput extends Component {
 	render(){
 		return (
       <div className='mainTextArea'>
+      	<h3>Input Your List</h3>
         <BoundTextArea value={this.state.value} onChange={this.listChange}/>
         <div><button onClick={this.onFinishButtonClick}>
-        	Sort
+        	Sort this List!
         </button></div>
       </div>
     );

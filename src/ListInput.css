@@ -1,0 +1,8 @@
+.mainTextArea textarea{
+	width: 100%;
+	height: 500px;
+	box-sizing: border-box;
+	resize: none;
+	border-radius: 5px;
+	padding: 5px;
+}
